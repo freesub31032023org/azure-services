@@ -18,12 +18,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = var.vm-type
+  name     = var.vm_type
   location = var.location
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "vnet-${var.vm-type}"
+  name                = "vnet-${var.vm_type}"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -37,7 +37,7 @@ resource "azurerm_subnet" "snet" {
 }
 
 resource "azurerm_public_ip" "pip" {
-  name                = "pip-${var.vm-type}"
+  name                = "pip-${var.vm_type}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   allocation_method   = "Dynamic"
@@ -48,7 +48,7 @@ resource "azurerm_public_ip" "pip" {
 }
 
 resource "azurerm_network_interface" "nic" {
-  name                = "nic-${var.vm-type}"
+  name                = "nic-${var.vm_type}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -61,7 +61,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "vm-${var.vm-type}"
+  name                = "vm-${var.vm_type}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_B2s"
@@ -72,7 +72,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file("${var.ssh-key-location}")
+    public_key = file("${var.ssh_key_location}")
   }
 
   os_disk {
