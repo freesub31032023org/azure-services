@@ -18,7 +18,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = var.vm_type
+  name     = "rg-${var.vm_type}"
   location = var.location
 }
 
