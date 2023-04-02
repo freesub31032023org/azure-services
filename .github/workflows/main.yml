@@ -50,3 +50,7 @@ jobs:
         TF_VAR_location: ${{ vars.REPO_VAR_LOCATION }}
         TF_VAR_vm_type: ${{ vars.REPO_VAR_VM_TYPE }}
         TF_VAR_ssh_key_location: "${{ github.workspace }}/vm-agent-linux/id_rsa.pub"
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        ARM_USE_OIDC: true
